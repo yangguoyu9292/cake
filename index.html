@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>蛋糕商城</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src='js/jquery-1.9.1.min.js'></script>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<script src='js/bootstrap.min.js'></script>
+</head>
+<style>
+	body,h1,ul{
+		
+		margin:0;
+		padding:0;
+	}
+
+	@font-face{
+		font-family:'Marvel-Regular';
+		src:url('fonts/Marvel-Regular');
+
+	}
+	a,a:hover,a:active{
+		color:#fff;
+		text-decoration:none;
+	}
+	
+
+	.header{
+		/*position: relative;*/
+		background:#5d4b33;
+	}
+	.navbar{
+		margin-bottom:0;
+		background:#5d4b33;
+	}
+	.navbar-toggle{
+		background:#f07818;
+	}
+	.icon-bar{
+		background:#f2f6f7;
+	}
+	.header h1{
+		font-family:'Marvel-Regular';
+		line-height:4.5rem;
+	}
+	.navbar-nav li a{
+		font-size:1.1em;
+		padding:23px 25px;
+		border-left:1px solid #79654a;
+		transition:background .8s ease-in-out;
+	}
+	.navbar-nav li a:hover{		
+			background:#f07818;
+		}
+	.navbar-nav li a.active{
+		background:#f07818;
+	}
+	.header-right a{		
+		display:inline-block;
+		font-size:1.8em;
+		padding:.6em;
+		border-left:1px solid #79654a;		
+	}
+
+	/*con_top*/
+	.con_top{
+		position:relative;
+		padding:12rem 0;
+		background:#f2f6f7;
+		/*height:600px;*/
+	}
+	.con_top .container h1{
+		font-family:'Marvel-Regular';
+		font-size:3.9rem;
+		font-weight:800;
+		color:#5d4b33;
+		transform:scale(1,2);
+	}
+	.con_top .container h1 span{
+		color:#f07818;
+	}
+	.con_top .container p{
+		font-size:1.4rem;	
+		color:#f07818;
+		letter-spacing:.26rem;
+		margin-top:2rem;
+		font-weight:bold;
+	}
+	.con_top .container a{
+		color:#5d4b33;
+		font-size:1.4rem;
+		padding:.8rem 3rem;
+		border:.4rem solid #5d4b33;
+		display:inline-block;
+		margin-top:1rem;
+		font-weight:bold;
+	}
+
+
+	/*con_mid*/
+	.gallery img{
+		border:1px solid transparent;
+	}
+	.img_bottom{
+			/*display:none;*/
+			visibility:hidden;
+			background:rgba(0,0,0,.79);
+			padding:18px;
+			bottom:13%;
+		}
+		.img_bottom span{
+			color:#fff;
+		}
+		.img_bottom a{
+			float:right;
+			padding:.2rem .5rem;
+			border:2px solid;
+		}
+	div.row img:hover{
+		border:1px solid rgba(25,23,23,.4);
+	}
+	div.gallery:hover .img_bottom{
+		/*display:block;*/
+		visibility:visible;
+	}
+	.img_info p{
+		font-weight:bold;
+		margin-top:12px;
+	}
+	.start{
+			float:left;
+		}
+		.price{
+			float:right;
+			font-weight:bold;
+			color:#999;
+			font-size:20px;
+			bottom:0;
+		}
+
+	.gallery1 img{
+		border:1px solid #ccc;
+	}
+	.con_bottom{
+		background:url(images/slid.jpg) no-repeat 0 0 fixed;
+		background-size:cover;
+		font-family:'Marvel-Regular';
+		color:#fff;
+		font-weight:bold;
+		text-align:center;
+		padding:9em 0;
+		margin-top:5em;
+	}
+	.con_bottom h3{
+		font-size:3rem;
+		font-weight:bold;
+		transform:scale(1,1.4);
+		margin-bottom:4rem;
+	}
+	.con_bottom input{
+		border:0;
+		outline:none;
+		width:24rem;
+		font-size:1rem;
+		padding:1rem;
+		background:rgba(251,250,250,.2);
+	}
+	.con_bottom button{
+		border:1px solid transparent;
+		outline:none;
+		background:#f07818;
+		font-size:1rem;
+		padding:.9rem;
+		width:9rem;
+		transition:all .5s;
+	}
+	.con_bottom button:hover{
+		background:rgba(251,250,250,.2);
+		color:#f07818;
+		border:1px solid #f07818;
+	}
+	.footer{
+		background:#f2f6f7;
+		padding:4.5em;
+	}
+	.footer_info h4{
+		font-size:25px;
+		color:#f07818;
+		text-transform:uppercase;
+		transform:scale(1,1.4);
+		font-family:'Marvel-Regular';
+		margin-bottom:20px;
+	}
+	.footer_info ul li{
+		list-style:none;
+	}
+	.footer_info ul li a{
+		color:#999;
+		display:inline-block;
+		margin-bottom:8px;
+	}
+	.footer_bottom{
+		background:#5D4B33;
+		text-align:center;
+		color:#fff;
+		padding:1.8em;
+	}
+</style>
+<body>
+	<div class="header">
+		<div class="container">
+			<nav class="navbar col-md-8">
+	            <div class="navbar-header">
+	                    <button class="navbar-toggle" data-toggle="collapse" data-target="#mynav">
+	                        <span class="icon-bar"></span>
+	                        <span class="icon-bar"></span>
+	                        <span class="icon-bar"></span>
+	                    </button>
+	                    <h1><a href="#" class="navbar-brand">Leisure</a></h1>
+	                    
+	            </div>
+	            <div class="collapse navbar-collapse" id="mynav">
+	                <ul class="nav navbar-nav">
+	                    <li><a href="#" class='active'>主页</a></li>
+	                    <li><a href="#">生日蛋糕</a></li>
+	                    <li><a href="#">婚礼蛋糕</a></li>
+	                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">特色产品<span class="caret"></span></a>
+	                        <ul class="dropdown-menu">
+	                            <li><a href="#">Section 4-1</a></li>
+	                            <li><a href="#">Section 4-2</a></li>
+	                        </ul>
+	                    </li>
+	                    <li><a href="#">全部产品</a></li>
+	                </ul>
+	            </div>
+            </nav>
+			<div class="header-right col-md-4">
+				<a href=""><span class='glyphicon glyphicon-search'></span></a>
+				<a href=""><span class='glyphicon glyphicon-user'></span></a>
+				<a href=""><span class='glyphicon glyphicon-shopping-cart'></span></a>
+			</div>
+		</div>
+		
+	</div>
+	<div class="con_top">
+		<div class="container">
+			<div class="col-md-8 col-sm-8 col-xs-8">
+				<h1>Leisure <span>Cakes</span> for u</h1>
+			<p>Our best cakes make your day special</p>
+			<a href="">SHOP NOW</a>
+			</div>
+			
+			<div class="con_top_right col-md-4 col-sm-4 col-xs-4 ">
+				<img src="images/2.png" alt="" class='img-responsive'>
+			</div>
+		</div>
+	</div>
+	<div class="con_mid">
+		<div class="container">
+
+		<!-- 		<div class="col-md-8 col-sm-8 col-xs-12 gallery gallery2">
+					<a href=""><img src="images/g1.jpg" alt="" class='img-responsive'></a>
+					<div class="img_bottom">
+						<span class='glyphicon glyphicon-eye-open'></span>
+						<span>View</span>
+						<a href="">SHOP NOW</a>
+					</div>
+					<div class="img_info">
+						<p>Lorem Ipsum is simply</p>
+						<div class="start">
+							<span>☆</span>
+							<span>☆</span>
+							<span>☆</span>
+							<span>☆</span>
+							<span>☆</span>
+						</div>
+						<div class="price">$95.00</div>
+					</div>
+				</div>	
+				<div class="col-md-4 col-sm-4 col-xs-12 gallery">
+					<a href=""><img src="images/g2.jpg" alt="" class='img-responsive'></a>
+					<div class="img_bottom">
+						<span class='glyphicon glyphicon-eye-open'></span>
+						<span>View</span>
+						<a href="">SHOP NOW</a>
+					</div>
+					<div class="img_info">
+						<p>Lorem Ipsum is simply</p>
+						<div class="start">
+							<span>☆</span>
+							<span>☆</span>
+							<span>☆</span>
+							<span>☆</span>
+							<span>☆</span>
+						</div>
+						<div class="price">$95.00</div>
+					</div>
+				</div>			
+				
+			
+				<div class="col-md-3 col-sm-6 col-xs-12 gallery gallery1">
+					<a href=""><img src="images/g3.png" alt="" class='img-responsive'></a>
+					<div class="img_bottom">
+						<span class='glyphicon glyphicon-eye-open'></span>
+						<span>View</span>
+						<a href="">SHOP NOW</a>
+					</div>
+					<div class="img_info">
+						<p>Lorem Ipsum is simply</p>
+						<div class="start">
+							<span>☆</span>
+							<span>☆</span>
+							<span>☆</span>
+							<span>☆</span>
+							<span>☆</span>
+						</div>
+						<div class="price">$95.00</div>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 col-xs-12 gallery gallery1">
+					<a href=""><img src="images/g4.png" alt="" class='img-responsive'></a>
+					<div class="img_bottom">
+						<span class='glyphicon glyphicon-eye-open'></span>
+						<span>View</span>
+						<a href="">SHOP NOW</a>
+					</div>
+					<div class="img_info">
+						<p>Lorem Ipsum is simply</p>
+						<div class="start">
+							<span>☆</span>
+							<span>☆</span>
+							<span>☆</span>
+							<span>☆</span>
+							<span>☆</span>
+						</div>
+						<div class="price">$95.00</div>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 col-xs-12 gallery gallery1">
+					<a href=""><img src="images/g5.png" alt="" class='img-responsive'></a>
+					<div class="img_bottom">
+						<span class='glyphicon glyphicon-eye-open'></span>
+						<span>View</span>
+						<a href="">SHOP NOW</a>
+					</div>
+					<div class="img_info">
+						<p>Lorem Ipsum is simply</p>
+						<div class="start">
+							<span>☆</span>
+							<span>☆</span>
+							<span>☆</span>
+							<span>☆</span>
+							<span>☆</span>
+						</div>
+						<div class="price">$95.00</div>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 col-xs-12 gallery gallery1">
+					<a href=""><img src="images/g6.png" alt="" class='img-responsive'></a>
+					<div class="img_bottom">
+						<span class='glyphicon glyphicon-eye-open'></span>
+						<span>View</span>
+						<a href="">SHOP NOW</a>
+					</div>
+					<div class="img_info">
+						<p>Lorem Ipsum is simply</p>
+						<div class="start">
+							<span>☆</span>
+							<span>☆</span>
+							<span>☆</span>
+							<span>☆</span>
+							<span>☆</span>
+						</div>
+						<div class="price">$95.00</div>
+					</div>
+				</div> -->
+
+				<div class="col-md-8 col-sm-8 col-xs-12 gallery gallery2">
+		<a href=""><img src="images/g1.jpg" alt="" class='img-responsive'></a>
+		<div class="img_bottom">
+			<span class='glyphicon glyphicon-eye-open'></span>
+			<span>View</span>
+			<a href="">SHOP NOW</a>
+		</div>
+		<div class="img_info">
+			<p>Lorem Ipsum is simply</p>
+			<div class="start">
+				<span>☆</span>
+				<span>☆</span>
+				<span>☆</span>
+				<span>☆</span>
+				<span>☆</span>
+			</div>
+			<div class="price">$95.00</div>
+		</div>
+	</div>	
+	<div class="col-md-4 col-sm-4 col-xs-12 gallery">
+		<a href=""><img src="images/g2.jpg" alt="" class='img-responsive img-responsive2'></a>
+		<div class="img_bottom img_bottom2">
+			<span class='glyphicon glyphicon-eye-open'></span>
+			<span>View</span>
+			<a href="">SHOP NOW</a>
+		</div>
+		<div class="img_info img_info2">
+			<p>Lorem Ipsum is simply</p>
+			<div class="start">
+				<span>☆</span>
+				<span>☆</span>
+				<span>☆</span>
+				<span>☆</span>
+				<span>☆</span>
+			</div>
+			<div class="price">$95.00</div>
+		</div>
+	</div>	
+	<div class="col-md-3 col-sm-6 col-xs-12 gallery gallery1">
+		<a href=""><img src="images/g3.png" alt="" class='img-responsive img-responsive1'></a>
+		<div class="img_bottom img_bottom1">
+			<span class='glyphicon glyphicon-eye-open'></span>
+			<span>View</span>
+			<a href="">SHOP NOW</a>
+		</div>
+		<div class="img_info img_info1">
+			<p>Lorem Ipsum is simply</p>
+			<div class="start">
+				<span>☆</span>
+				<span>☆</span>
+				<span>☆</span>
+				<span>☆</span>
+				<span>☆</span>
+			</div>
+			<div class="price">$95.00</div>
+		</div>
+	</div>
+	<div class="col-md-3 col-sm-6 col-xs-12 gallery gallery1">
+		<a href=""><img src="images/g4.png" alt="" class='img-responsive img-responsive1'></a>
+		<div class="img_bottom img_bottom1">
+			<span class='glyphicon glyphicon-eye-open'></span>
+			<span>View</span>
+			<a href="">SHOP NOW</a>
+		</div>
+		<div class="img_info img_info1">
+			<p>Lorem Ipsum is simply</p>
+			<div class="start">
+				<span>☆</span>
+				<span>☆</span>
+				<span>☆</span>
+				<span>☆</span>
+				<span>☆</span>
+			</div>
+			<div class="price">$95.00</div>
+		</div>
+	</div>
+	<div class="col-md-3 col-sm-6 col-xs-12 gallery gallery1">
+		<a href=""><img src="images/g5.png" alt="" class='img-responsive img-responsive1'></a>
+		<div class="img_bottom img_bottom1">
+			<span class='glyphicon glyphicon-eye-open'></span>
+			<span>View</span>
+			<a href="">SHOP NOW</a>
+		</div>
+		<div class="img_info img_info1">
+			<p>Lorem Ipsum is simply</p>
+			<div class="start">
+				<span>☆</span>
+				<span>☆</span>
+				<span>☆</span>
+				<span>☆</span>
+				<span>☆</span>
+			</div>
+			<div class="price">$95.00</div>
+		</div>
+	</div>
+	<div class="col-md-3 col-sm-6 col-xs-12 gallery gallery1">
+		<a href=""><img src="images/g6.png" alt="" class='img-responsive img-responsive1'></a>
+		<div class="img_bottom img_bottom1">
+			<span class='glyphicon glyphicon-eye-open'></span>
+			<span>View</span>
+			<a href="">SHOP NOW</a>
+		</div>
+		<div class="img_info img_info1">
+			<p>Lorem Ipsum is simply</p>
+			<div class="start">
+				<span>☆</span>
+				<span>☆</span>
+				<span>☆</span>
+				<span>☆</span>
+				<span>☆</span>
+			</div>
+			<div class="price">$95.00</div>
+		</div>
+	</div>
+
+				<!-- <div class="col-md-3 col-sm-6 col-xs-12 gallery gallery1">
+					<a href=""><img src="images/g7.png" alt="" class='img-responsive'></a>
+					<div class="img_bottom">
+						<span class='glyphicon glyphicon-eye-open'></span>
+						<span>View</span>
+						<a href="">SHOP NOW</a>
+					</div>
+					<div class="img_info">
+						<p>Lorem Ipsum is simply</p>
+						<div class="start">
+							<span>☆</span>
+							<span>☆</span>
+							<span>☆</span>
+							<span>☆</span>
+							<span>☆</span>
+						</div>
+						<div class="price">$95.00</div>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 col-xs-12 gallery gallery1">
+					<a href=""><img src="images/g8.png" alt="" class='img-responsive'></a>
+					<div class="img_bottom">
+						<span class='glyphicon glyphicon-eye-open'></span>
+						<span>View</span>
+						<a href="">SHOP NOW</a>
+					</div>
+					<div class="img_info">
+						<p>Lorem Ipsum is simply</p>
+						<div class="start">
+							<span>☆</span>
+							<span>☆</span>
+							<span>☆</span>
+							<span>☆</span>
+							<span>☆</span>
+						</div>
+						<div class="price">$95.00</div>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 col-xs-12 gallery gallery1">
+					<a href=""><img src="images/g9.png" alt="" class='img-responsive'></a>
+					<div class="img_bottom">
+						<span class='glyphicon glyphicon-eye-open'></span>
+						<span>View</span>
+						<a href="">SHOP NOW</a>
+					</div>
+					<div class="img_info">
+						<p>Lorem Ipsum is simply</p>
+						<div class="start">
+							<span>☆</span>
+							<span>☆</span>
+							<span>☆</span>
+							<span>☆</span>
+							<span>☆</span>
+						</div>
+						<div class="price">$95.00</div>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 col-xs-12 gallery gallery1">
+					<a href=""><img src="images/g10.png" alt="" class='img-responsive'></a>
+					<div class="img_bottom">
+						<span class='glyphicon glyphicon-eye-open'></span>
+						<span>View</span>
+						<a href="">SHOP NOW</a>
+					</div>
+					<div class="img_info">
+						<p>Lorem Ipsum is simply</p>
+						<div class="start">
+							<span>☆</span>
+							<span>☆</span>
+							<span>☆</span>
+							<span>☆</span>
+							<span>☆</span>
+						</div>
+						<div class="price">$95.00</div>
+					</div>
+				</div> -->
+
+	<div class="col-md-3 col-sm-6 col-xs-12 gallery gallery1">
+		<a href=""><img src="images/g7.png" alt="" class='img-responsive img-responsive1'></a>
+		<div class="img_bottom img_bottom1">
+			<span class='glyphicon glyphicon-eye-open'></span>
+			<span>View</span>
+			<a href="">SHOP NOW</a>
+		</div>
+		<div class="img_info img_info1">
+			<p>Lorem Ipsum is simply</p>
+			<div class="start">
+				<span>☆</span>
+				<span>☆</span>
+				<span>☆</span>
+				<span>☆</span>
+				<span>☆</span>
+			</div>
+			<div class="price">$95.00</div>
+		</div>
+	</div>
+	<div class="col-md-3 col-sm-6 col-xs-12 gallery gallery1">
+		<a href=""><img src="images/g8.png" alt="" class='img-responsive img-responsive1'></a>
+		<div class="img_bottom img_bottom1">
+			<span class='glyphicon glyphicon-eye-open'></span>
+			<span>View</span>
+			<a href="">SHOP NOW</a>
+		</div>
+		<div class="img_info img_info1">
+			<p>Lorem Ipsum is simply</p>
+			<div class="start">
+				<span>☆</span>
+				<span>☆</span>
+				<span>☆</span>
+				<span>☆</span>
+				<span>☆</span>
+			</div>
+			<div class="price">$95.00</div>
+		</div>
+	</div>
+	<div class="col-md-3 col-sm-6 col-xs-12 gallery gallery1">
+		<a href=""><img src="images/g9.png" alt="" class='img-responsive img-responsive1'></a>
+		<div class="img_bottom img_bottom1">
+			<span class='glyphicon glyphicon-eye-open'></span>
+			<span>View</span>
+			<a href="">SHOP NOW</a>
+		</div>
+		<div class="img_info img_info1">
+			<p>Lorem Ipsum is simply</p>
+			<div class="start">
+				<span>☆</span>
+				<span>☆</span>
+				<span>☆</span>
+				<span>☆</span>
+				<span>☆</span>
+			</div>
+			<div class="price">$95.00</div>
+		</div>
+	</div>
+	<div class="col-md-3 col-sm-6 col-xs-12 gallery gallery1">
+		<a href=""><img src="images/g10.png" alt="" class='img-responsive img-responsive1'></a>
+		<div class="img_bottom img_bottom1">
+			<span class='glyphicon glyphicon-eye-open'></span>
+			<span>View</span>
+			<a href="">SHOP NOW</a>
+		</div>
+		<div class="img_info img_info1">
+			<p>Lorem Ipsum is simply</p>
+			<div class="start">
+				<span>☆</span>
+				<span>☆</span>
+				<span>☆</span>
+				<span>☆</span>
+				<span>☆</span>
+			</div>
+			<div class="price">$95.00</div>
+		</div>
+	</div>
+
+		</div>
+	</div>
+	<div class="con_bottom">
+		<div class="container">
+			<h3>Newsletter</h3>
+			<input type="text" value='Email'><button>Subscribe</button>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-2 col-sm-4 col-xs-12 footer_info">
+					<h4>company</h4>
+					<ul>
+						<li><a href="">Products</a></li>
+						<li><a href="">Work Here</a></li>
+						<li><a href="">Team</a></li>
+						<li><a href="">Happenings</a></li>
+						<li><a href="">Dealer Locator</a></li>
+					</ul>
+				</div>
+				<div class="col-md-2 col-sm-4 col-xs-12 footer_info">
+					<h4>company</h4>
+					<ul>
+						<li><a href="">Products</a></li>
+						<li><a href="">Work Here</a></li>
+						<li><a href="">Team</a></li>
+						<li><a href="">Happenings</a></li>
+						<li><a href="">Dealer Locator</a></li>
+					</ul>
+				</div>
+				<div class="col-md-3 col-sm-4 col-xs-12 footer_info">
+					<h4>company</h4>
+					<ul>
+						<li><a href="">Products</a></li>
+						<li><a href="">Work Here</a></li>
+						<li><a href="">Team</a></li>
+						<li><a href="">Happenings</a></li>
+						<li><a href="">Dealer Locator</a></li>
+					</ul>
+				</div>
+				<div class="col-md-2 col-sm-4 col-xs-12 footer_info">
+					<h4>company</h4>
+					<ul>
+						<li><a href="">Products</a></li>
+						<li><a href="">Work Here</a></li>
+						<li><a href="">Team</a></li>
+						<li><a href="">Happenings</a></li>
+						<li><a href="">Dealer Locator</a></li>
+					</ul>
+				</div>
+				<div class="col-md-3 col-sm-4 col-xs-12 footer_info">
+					<h4>company</h4>
+					<ul>
+						<li><a href="">Products</a></li>
+						<li><a href="">Work Here</a></li>
+						<li><a href="">Team</a></li>
+						<li><a href="">Happenings</a></li>
+						<li><a href="">Dealer Locator</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer_bottom">
+		<div class="container">
+			<p>Copyright © 2015.Company name All rights reserved.More Templates </p>
+		</div>
+	</div>
+</body>
+<script>
+	var imgs = document.getElementsByClassName('img-responsive');
+	var img_info = document.getElementsByClassName('img_info');
+	var img_bottom = document.getElementsByClassName('img_bottom');
+	img_info[1].style.width =imgs[1].offsetWidth + 'px';
+	img_bottom[1].style.width =imgs[1].offsetWidth + 'px';
+
+	var imgs1 = document.getElementsByClassName('img-responsive1');
+	var img_info1 = document.getElementsByClassName('img_info1');
+	var img_bottom1 = document.getElementsByClassName('img_bottom1');
+	//console.log(imgs.length);4
+			//console.log(imgs[0].offsetWidth);
+			//console.log(img_info[0].offsetWidth);
+			for(var i= 0; i<img_info1.length; i++){
+				img_info1[i].style.width =imgs1[0].offsetWidth + 'px';
+				img_bottom1[i].style.width =imgs1[0].offsetWidth + 'px';
+			}
+			
+			var imgs2 = document.getElementsByClassName('img-responsive2');
+	var img_info2 = document.getElementsByClassName('img_info2');
+	var img_bottom2 = document.getElementsByClassName('img_bottom2');
+	//console.log(imgs.length);4
+			//console.log(imgs[0].offsetWidth);
+			//console.log(img_info[0].offsetWidth);
+			for(var i= 0; i<img_info2.length; i++){
+				img_info2[i].style.width =imgs2[0].offsetWidth + 'px';
+				img_bottom2[i].style.width =imgs2[0].offsetWidth + 'px';
+			}
+</script>
+</html>
